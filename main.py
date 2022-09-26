@@ -8,9 +8,9 @@ import shutil
 class Archive(AddOn):
     def main(self):
         os.makedirs(os.path.dirname('./out/'), exist_ok=True)
-        pname = self.data.get('pname') #input("Name of the project you are trying to archive \n")
+        pname = self.data.get('pname') 
         iname = self.data.get('iname')
-        iname = i name.replace(' ', '-')
+        iname = iname.replace(' ', '-')
         p = self.client.projects.get(id=None, title=pname)
         
         for i in p.document_ids:
@@ -18,10 +18,12 @@ class Archive(AddOn):
             p = d.pdf
             t = d.title + ".pdf"
             save_path='./out'
-            with open(os.path.join(save_path, t), 'wb') as f:
+            full_path = os.path.join(save_path, t)
+            with open(full_path, 'wb') as f:
                 f.write(d.pdf)
-            r = upload(iname, files = [t])
+            r = upload(iname, files = full_path)
         shutil.rmtree('./out/', ignore_errors=False, onerror=None)
+        
 
 if __name__ == "__main__":
     Archive().main()
