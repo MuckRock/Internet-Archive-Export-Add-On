@@ -1,38 +1,27 @@
-"""
-This is a hello world add-on for DocumentCloud.
-
-It demonstrates how to write a add-on which can be activated from the
-DocumentCloud add-on system and run using Github Actions.  It receives data
-from DocumentCloud via the request dispatch and writes data back to
-DocumentCloud using the standard API
-"""
-
 from documentcloud.addon import AddOn
+from documentcloud import DocumentCloud
+from internetarchive import upload
+import os.path
+import os
+import shutil
 
-
-class HelloWorld(AddOn):
-    """An example Add-On for DocumentCloud."""
-
+class Archive(AddOn):
     def main(self):
-        """The main add-on functionality goes here."""
-        # fetch your add-on specific data
-        name = self.data.get("name", "world")
-
-        self.set_message("Hello World start!")
-
-        # add a hello note to the first page of each selected document
-        for document in self.get_documents():
-            # get_documents will iterate through all documents efficiently,
-            # either selected or by query, dependeing on which is passed in
-            document.annotations.create(f"Hello {name}!", 0)
-
-        with open("hello.txt", "w+") as file_:
-            file_.write("Hello world!")
-            self.upload_file(file_)
-
-        self.set_message("Hello World end!")
-        self.send_mail("Hello World!", "We finished!")
-
+        os.makedirs(os.path.dirname('./out/'), exist_ok=True)
+        pname = self.data.get('pname') #input("Name of the project you are trying to archive \n")
+        iname = self.data.get('iname')
+        iname = i name.replace(' ', '-')
+        p = self.client.projects.get(id=None, title=pname)
+        
+        for i in p.document_ids:
+            d = self.client.documents.get(i)
+            p = d.pdf
+            t = d.title + ".pdf"
+            save_path='./out'
+            with open(os.path.join(save_path, t), 'wb') as f:
+                f.write(d.pdf)
+            r = upload(iname, files = [t])
+        shutil.rmtree('./out/', ignore_errors=False, onerror=None)
 
 if __name__ == "__main__":
-    HelloWorld().main()
+    Archive().main()
