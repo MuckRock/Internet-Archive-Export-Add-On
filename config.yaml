@@ -6,7 +6,7 @@ properties:
     title: Name of DocumentCloud project you would like archived. 
     type: string
   iname: 
-    title: Name of Internet Archive item (basically their version of projects) that you would like the documents uploaded to. 
+    title: Name of Internet Archive item (basically their version of projects) that you would like the documents uploaded to. Spaces are not an allowed character for item names and will be replaced with dashes. 
     type: string
 required:
     -pname
