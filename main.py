@@ -7,7 +7,7 @@ import shutil
 
 class Archive(AddOn):
     def main(self):
-        os.makedirs(os.path.dirname('./out/'), exist_ok=True)
+        os.makedirs(os.path.dirname('./ia/'), exist_ok=True)
         pname = self.data.get('pname') 
         iname = self.data.get('iname')
         iname = iname.replace(' ', '-')
@@ -17,12 +17,12 @@ class Archive(AddOn):
             d = self.client.documents.get(i)
             p = d.pdf
             t = d.title + ".pdf"
-            save_path='./out'
+            save_path='./ia'
             full_path = os.path.join(save_path, t)
             with open(full_path, 'wb') as f:
                 f.write(d.pdf)
             r = upload(iname, files = full_path)
-        shutil.rmtree('./out/', ignore_errors=False, onerror=None)
+        shutil.rmtree('./ia/', ignore_errors=False, onerror=None)
         
 
 if __name__ == "__main__":
