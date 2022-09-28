@@ -14,7 +14,8 @@ class Archive(AddOn):
         p = self.client.projects.get(id=None, title=pname)
         ia_user=os.environ["IA_USER"]
         ia_pass=os.environ["IA_PASS"]
-        os.system('ia configure -u {ia_user} -p {ia_pass}')
+        cmd = 'ia configure --username ' + ia_user + ' ' + '--password ' + ia_pass
+        os.system(cmd)
         
         for i in p.document_ids:
             d = self.client.documents.get(i)
