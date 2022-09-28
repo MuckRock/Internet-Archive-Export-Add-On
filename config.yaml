@@ -11,6 +11,3 @@ properties:
 required:
     -pname
     -iname
-secrets:
-  ia_pass: ${{ secrets.IA_PASS }}
-  ia_user: ${{ secrets.IA_USER }}
