@@ -26,7 +26,7 @@ class Archive(AddOn):
         projectname = self.data.get("projectname")
         itemname = self.data.get("itemname")
         itemname = itemname.replace(" ", "-")
-        project = self.client.projects.get(id=None, title=pname)
+        project = self.client.projects.get(id=None, title=projectname)
         ia_user = os.environ[
             "TOKEN"
         ]  # pulls the internet archive username secret from the environment, it is stored under token in the workflow.
