@@ -38,7 +38,7 @@ class Archive(AddOn):
         )  # sets up the command to configure the IA.INI file to run the Internet Archive Python library.
         os.system(cmd)
 
-        for document_id in p.document_ids:
+        for document_id in project.document_ids:
             document = self.client.documents.get(document_id)
             pdf = document.pdf
             title = document.title + ".pdf"
