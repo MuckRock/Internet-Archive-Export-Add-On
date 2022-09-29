@@ -12,10 +12,10 @@ class Archive(AddOn):
         iname = self.data.get('iname')
         iname = iname.replace(' ', '-')
         p = self.client.projects.get(id=None, title=pname)
-        ia_user=os.environ["IA_USER"]
-        # ia_pass=os.environ["IA_PASS"]
-        # cmd = 'ia configure --username ' + ia_user + ' ' + '--password ' + ia_pass
-        # os.system(cmd)
+        ia_user=os.environ['TOKEN']
+        ia_pass=os.environ["KEY"]
+        cmd = 'ia configure --username ' + ia_user + ' ' + '--password ' + ia_pass
+        os.system(cmd)
         
         for i in p.document_ids:
             d = self.client.documents.get(i)
