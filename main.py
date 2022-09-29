@@ -43,7 +43,7 @@ class Archive(AddOn):
             pdf = document.pdf
             title = document.title + ".pdf"
             save_path = "./out"
-            full_path = os.path.join(save_path, t)
+            full_path = os.path.join(save_path, title)
             with open(full_path, "wb") as f:
                 f.write(document.pdf)
             request = upload(
