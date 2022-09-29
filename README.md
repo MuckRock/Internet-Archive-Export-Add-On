@@ -5,12 +5,7 @@
 
 # DocumentCloud Hello World Add-On
 
-This repository contains an example Add-On for DocumentCloud.  It is designed
-to be copied and modified to allow one to easily write Add-Ons to bring custom
-functionality to DocumentCloud.  Please use the green "Use this Template"
-button to create a new repository instead of forking.  This will be easier as
-the new Add-On will diverge significantly from this code base.
+This DocumentCloud Add-On allows you to backup your DocumentCloud project's to DocumentCloud's Internet Archive (archive.org) account. 
+See https://archive.org/details/@documentcloudupload for all documents currently backed up on archive.org 
 
-After copying the template, remember to update this README file to describe
-your new Add-On!  It is a good idea to leave the link to the Add-On
-documentation at the top of the file though.
+If you fork this project, you can set your own repository secrets, name them IA_USER (your internet archive username) and IA_PASS (your internet archive password) and that will allow you to backup your projects to your own Internet Archive account. 
