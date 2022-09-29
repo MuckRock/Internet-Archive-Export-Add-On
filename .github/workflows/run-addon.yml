@@ -3,6 +3,3 @@ on: repository_dispatch
 jobs:
   Run-Add-On:
     uses: MuckRock/documentcloud-addon-workflows/.github/workflows/run-addon.yml@v1
-    secrets:
-      IA_PASS: ${{ secrets.IA_PASS }}
-      IA_USER: ${{ secrets.IA_USER }}
