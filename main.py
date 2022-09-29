@@ -25,7 +25,7 @@ class Archive(AddOn):
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
         projectname = self.data.get("projectname")
         itemname = self.data.get("itemname")
-        itemname = iname.replace(" ", "-")
+        itemname = itemname.replace(" ", "-")
         project = self.client.projects.get(id=None, title=pname)
         ia_user = os.environ[
             "TOKEN"
