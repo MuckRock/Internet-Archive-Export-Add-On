@@ -4,5 +4,6 @@ jobs:
   Run-Add-On:
     uses: MuckRock/documentcloud-addon-workflows/.github/workflows/run-addon.yml@v1
     secrets: 
-     token:  ${{ secrets.IA_PASS }}
+     token:  ${{ secrets.IA_USER }}
+     key: ${{ secrets.IA_PASS }}
   
