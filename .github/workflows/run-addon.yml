@@ -2,7 +2,7 @@ name: Run Add-On
 on: repository_dispatch
 jobs:
   Run-Add-On:
-    uses:MuckRock/documentcloud-addon-workflows/.github/workflows/run-addon.yml@v2
+    uses: MuckRock/documentcloud-addon-workflows/.github/workflows/run-addon.yml@v2
     secrets: 
      token: ${{ secrets.IA_USER }}
      key: ${{ secrets.IA_PASS }}
