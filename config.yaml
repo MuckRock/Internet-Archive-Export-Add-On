@@ -8,3 +8,6 @@ properties:
  iname: 
   title: Name of Internet Archive item
   type: string
+required:
+ - pname
+ - iname
