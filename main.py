@@ -21,9 +21,9 @@ class Archive(AddOn):
         """
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
         # pulls the project name Add-On UI or if run locally on CLI through --data.
-        projectname = self.data.get("projectname")
+        project_name = self.data.get("project_name")
         # pulls the item name from Add-On UI or if run locally on CLI through --data
-        itemname = self.data.get("itemname")
+        item_name = self.data.get("item_name")
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
         itemname = itemname.replace(" ", "-")
         # DocumentCloud API call to get the project object.
