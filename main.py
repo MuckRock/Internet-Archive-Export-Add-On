@@ -17,7 +17,8 @@ class Archive(AddOn):
         The code will upload to your Internet Archive account.
         The call to os.system() is to set up the IA.INI configuration file
         which is required to use the Internet Archive's Python Library.
-        See https://archive.org/services/docs/api/internetarchive/quickstart.html"""
+        See https://archive.org/services/docs/api/internetarchive/quickstart.html
+        """
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
         # pulls the project name Add-On UI or if run locally on CLI through --data.
         projectname = self.data.get("projectname")
