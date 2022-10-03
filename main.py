@@ -28,14 +28,11 @@ class Archive(AddOn):
         ia_user = os.environ["TOKEN"]
         ia_pass = os.environ["KEY"]
         # sets up the config file to allow us to use the Archive Python library.
-        cmd = "ia configure --username " + ia_user + " " + "--password " + ia_pass
+        cmd = f'ia configure --username {ia_user} --password  {ia_pass}'
         # runs the command in the shell to generate the configuration file.
         os.system(cmd)
 
-        for document_id in project.document_ids:
-            # retrieves an individual project using the DocumentCloud Python Wrapper get() method
-            document = self.client.documents.get(document_id)
-            # Saves the project document to ./out/ with the currect file path.
+        for document in self.get_documents()
             title = document.title + ".pdf"
             save_path = "./out"
             full_path = os.path.join(save_path, title)
