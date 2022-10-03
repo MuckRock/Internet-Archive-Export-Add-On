@@ -20,7 +20,7 @@ class Archive(AddOn):
         See https://archive.org/services/docs/api/internetarchive/quickstart.html
         """
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
-        item_name = self.data[item_name]
+        item_name = self.data["item_name"]
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
         item_name = item_name.replace(" ", "-")
         # DocumentCloud API call to get the project object.
