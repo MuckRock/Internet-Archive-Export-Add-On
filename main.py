@@ -36,6 +36,7 @@ class Archive(AddOn):
             title = document.title
             save_path = "./out"
             full_path = os.path.join(save_path, title)
+            print(full_path)
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
             # Uploads the file to the item in the Internet Archive.
