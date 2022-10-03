@@ -25,9 +25,9 @@ class Archive(AddOn):
         # pulls the item name from Add-On UI or if run locally on CLI through --data
         item_name = self.data[item_name]
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
-        itemname = itemname.replace(" ", "-")
+        item_name = item_name.replace(" ", "-")
         # DocumentCloud API call to get the project object.
-        project = self.client.projects.get(id=None, title=projectname)
+        project = self.client.projects.get(id=None, title=project_name)
         # pulls the internet archive username secret(token) from the workflow environment.
         ia_user = os.environ["TOKEN"]
         # pulls the internet archive password secret(key) from the workflow environment.
