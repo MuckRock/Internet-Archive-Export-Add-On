@@ -33,7 +33,7 @@ class Archive(AddOn):
         subprocess.call(cmd, shell=True)
 
         for document in self.get_documents():
-            title = f{document.title}.pdf
+            title = f'{document.title}.pdf'
             save_path = "./out"
             full_path = os.path.join(save_path, title)
             print(full_path)
