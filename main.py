@@ -1,6 +1,6 @@
 """ This program uses the internetarchive python library and DocumentCloud's addon system"""
 import os.path
-import os
+import subprocess
 import shutil
 from documentcloud.addon import AddOn
 from internetarchive import upload
@@ -30,7 +30,7 @@ class Archive(AddOn):
         # sets up the config file to allow us to use the Archive Python library.
         cmd = f'ia configure --username {ia_user} --password  {ia_pass}'
         # runs the command in the shell to generate the configuration file.
-        os.system(cmd)
+        subprocess.call(cmd, shell=True)
 
         for document in self.get_documents():
             title = document.title
