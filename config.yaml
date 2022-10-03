@@ -5,12 +5,8 @@ documents:
  -query
  -selected
 properties:
- project_name:
-  title: Name of DocumentCloud project you would like archived. 
-  type: string
  item_name: 
   title: Name of Internet Archive item
   type: string
 required:
- - projectname
  - itemname
