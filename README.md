@@ -3,7 +3,7 @@
 
 [Please see the Add-On documentation](https://github.com/MuckRock/documentcloud-hello-world-addon/wiki/)
 
-# DocumentCloud Hello World Add-On
+# DocumentCloud Internet Archive Export Add On
 
 This DocumentCloud Add-On allows you to backup your DocumentCloud project's to DocumentCloud's Internet Archive (archive.org) account. 
 See https://archive.org/details/@documentcloudupload for all documents currently backed up on archive.org 
