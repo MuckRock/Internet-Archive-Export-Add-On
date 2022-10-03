@@ -9,4 +9,4 @@ properties:
   title: Name of Internet Archive item
   type: string
 required:
- - itemname
+ - item_name
