@@ -32,7 +32,7 @@ class Archive(AddOn):
         # runs the command in the shell to generate the configuration file.
         os.system(cmd)
 
-        for document in self.get_documents()
+        for document in self.get_documents():
             title = document.title + ".pdf"
             save_path = "./out"
             full_path = os.path.join(save_path, title)
