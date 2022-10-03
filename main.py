@@ -23,13 +23,11 @@ class Archive(AddOn):
         item_name = self.data["item_name"]
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
         item_name = item_name.replace(" ", "-")
-        # DocumentCloud API call to get the project object.
         # pulls the internet archive username & password secrets from the workflow environment.
         ia_user = os.environ["TOKEN"]
         ia_pass = os.environ["KEY"]
-        # sets up the config file to allow us to use the Archive Python library.
+        # cmd to set up the config file for Internet Archive API access.
         cmd = f'ia configure --username {ia_user} --password  {ia_pass}'
-        # runs the command in the shell to generate the configuration file.
         subprocess.call(cmd, shell=True)
 
         for document in self.get_documents():
