@@ -20,17 +20,12 @@ class Archive(AddOn):
         See https://archive.org/services/docs/api/internetarchive/quickstart.html
         """
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
-        # pulls the project name Add-On UI or if run locally on CLI through --data.
-        project_name = self.data[project_name]
-        # pulls the item name from Add-On UI or if run locally on CLI through --data
         item_name = self.data[item_name]
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
         item_name = item_name.replace(" ", "-")
         # DocumentCloud API call to get the project object.
-        project = self.client.projects.get(id=None, title=project_name)
-        # pulls the internet archive username secret(token) from the workflow environment.
+        # pulls the internet archive username & password secrets from the workflow environment.
         ia_user = os.environ["TOKEN"]
-        # pulls the internet archive password secret(key) from the workflow environment.
         ia_pass = os.environ["KEY"]
         # sets up the config file to allow us to use the Archive Python library.
         cmd = "ia configure --username " + ia_user + " " + "--password " + ia_pass
