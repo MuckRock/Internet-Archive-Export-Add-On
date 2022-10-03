@@ -33,7 +33,7 @@ class Archive(AddOn):
         os.system(cmd)
 
         for document in self.get_documents():
-            title = document.title + ".pdf"
+            title = f'{document.title}.pdf'
             save_path = "./out"
             full_path = os.path.join(save_path, title)
             with open(full_path, "wb") as file:
