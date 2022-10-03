@@ -47,7 +47,7 @@ class Archive(AddOn):
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
             # Uploads the file to the item in the Internet Archive.
-            upload(itemname, files=full_path)
+            upload(item_name, files=full_path)
         # temporary  directory out is deleted after completion.
         shutil.rmtree("./out/", ignore_errors=False, onerror=None)
 
