@@ -1,5 +1,5 @@
 title: Internet Archive Export Tool
-description: This add-on allows you to select a project from DocumentCloud and upload all the documents to the Internet Archive for archiving.
+description: This add-on allows you to select documents from DocumentCloud and upload all the documents to the Internet Archive for archiving.
 type: object
 documents:
  - query
