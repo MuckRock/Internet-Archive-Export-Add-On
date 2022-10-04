@@ -30,13 +30,12 @@ class Archive(AddOn):
 
         for document in self.get_documents():
             title = f'{document.title}.pdf'
+            document_id = str(document.id)
             save_path = "./out"
-            full_path = os.path.join(save_path, title)
+            full_path = os.path.join(save_path, title, document_id)
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
-            # Append the document ID to the item name to guarantee some uniqueness for item name. 
-            document_id = str(document.id)
-            item_name = f'{item_name}-{document_id}'
+            # Append the document ID to the documentname to guarantee some uniqueness for item name.
             upload(item_name, files=full_path)
         # temporary  directory out is deleted after completion.
         shutil.rmtree("./out/", ignore_errors=False, onerror=None)
