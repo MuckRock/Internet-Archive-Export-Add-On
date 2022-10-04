@@ -35,7 +35,8 @@ class Archive(AddOn):
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
             # Append the document ID to the item name to guarantee some uniqueness for item name. 
-            item_name = item_name + str(document.id)
+            document_id = str(document.id)
+            item_name = f'{item_name} {document_id}'
             upload(item_name, files=full_path)
         # temporary  directory out is deleted after completion.
         shutil.rmtree("./out/", ignore_errors=False, onerror=None)
