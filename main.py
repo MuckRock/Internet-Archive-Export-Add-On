@@ -5,7 +5,6 @@ import shutil
 from documentcloud.addon import AddOn
 from internetarchive import upload
 
-
 class Archive(AddOn):
     """Based on DocumentCloud HelloWorld template Add-On."""
 
@@ -33,10 +32,10 @@ class Archive(AddOn):
             title = f'{document.title}.pdf'
             save_path = "./out"
             full_path = os.path.join(save_path, title)
-            print(full_path)
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
-            # Uploads the file to the item in the Internet Archive.
+            # Append the document ID to the item name to guarantee some uniqueness for item name. 
+            item_name = item_name + document.id
             upload(item_name, files=full_path)
         # temporary  directory out is deleted after completion.
         shutil.rmtree("./out/", ignore_errors=False, onerror=None)
