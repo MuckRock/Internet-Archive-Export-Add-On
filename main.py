@@ -29,10 +29,10 @@ class Archive(AddOn):
         subprocess.call(cmd, shell=True)
 
         for document in self.get_documents():
-            title = f'{document.title}.pdf'
             document_id = str(document.id)
+            title = f'{document.title}-{document_id}.pdf'
             save_path = "./out"
-            full_path = os.path.join(save_path, title, document_id)
+            full_path = os.path.join(save_path, title)
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
             upload(item_name, files=full_path)
