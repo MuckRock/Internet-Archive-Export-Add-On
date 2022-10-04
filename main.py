@@ -15,8 +15,7 @@ class Archive(AddOn):
         which can be found here: https://archive.org/details/@documentcloudupload
         If you fork the project and create your own repo secrets (IA_USER and IA_PASS),
         The code will upload to your Internet Archive account.
-        The call to os.system() is to set up the IA.INI configuration file
-        which is required to use the Internet Archive's Python Library.
+        The subprocess.call() runs the Internat Archive configuration command. 
         See https://archive.org/services/docs/api/internetarchive/quickstart.html
         """
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
