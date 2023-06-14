@@ -10,3 +10,5 @@ required:
 documents:
  - query
  - selected
+categories:
+ - export
