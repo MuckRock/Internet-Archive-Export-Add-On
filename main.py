@@ -17,6 +17,9 @@ class Archive(AddOn):
         The subprocess.call() runs the Internat Archive configuration command. 
         See https://archive.org/services/docs/api/internetarchive/quickstart.html
         """
+        if not self.documents:
+            self.set_message("Please select at least one document")
+            return
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
         item_name = self.data["item_name"]
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
