@@ -1,9 +1,13 @@
 """ This program uses the internetarchive python library and DocumentCloud's addon system"""
 import os.path
-import subprocess
 import shutil
-from documentcloud.addon import AddOn
+import subprocess
+
 from internetarchive import upload
+
+from documentcloud.addon import AddOn
+
+FILECOIN_ID = 104
 
 class Archive(AddOn):
     """Based on DocumentCloud HelloWorld template Add-On."""
@@ -30,7 +34,7 @@ class Archive(AddOn):
         # cmd to set up the config file for Internet Archive API access.
         cmd = f'ia configure --username {ia_user} --password  {ia_pass}'
         subprocess.call(cmd, shell=True)
-
+        doc_ids = []
         for document in self.get_documents():
             document_id = str(document.id)
             title = f'{document.title}-{document_id}.pdf'
@@ -39,8 +43,16 @@ class Archive(AddOn):
             with open(full_path, "wb") as file:
                 file.write(document.pdf)
             upload(item_name, files=full_path)
+            doc_ids.append(document_id)
+
+        if self.data.get("filecoin") and doc_ids:
+            self.client.post(
+                "addon_runs/",
+                json={"addon": FILECOIN_ID, "parameters": {}, "documents": doc_ids},
+            )
         # temporary  directory out is deleted after completion.
         shutil.rmtree("./out/", ignore_errors=False, onerror=None)
+
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 title: Internet Archive Export Tool
 description: This add-on allows you to select documents from DocumentCloud and upload all the documents to the Internet Archive for archiving.
 instructions: |
- This DocumentCloud Add-On allows you to backup documents from DocumentCloud to DocumentCloud's Internet Archive (archive.org) account. See our [Internet Archive page](https://archive.org/details/@documentcloudupload) for all documents currently backed up on archive.org
+ This DocumentCloud Add-On allows you to backup documents from DocumentCloud to DocumentCloud's Internet Archive (archive.org) account and optionally the IPFS/Filecoin networks. See our [Internet Archive page](https://archive.org/details/@documentcloudupload) for all documents currently backed up on archive.org
  If you fork this project, you can set your own repository secrets, name them IA_USER (your internet archive username) and IA_PASS (your internet archive password) which will allow you to backup your projects to your own Internet Archive account.
  This Add-On was developed using the [Internet Archive's Python Library](https://archive.org/services/docs/api/internetarchive/). 
 type: object
@@ -9,6 +9,12 @@ properties:
  item_name: 
   title: Name of Internet Archive item
   type: string
+ filecoin:
+    title: Push to IPFS/Filecoin
+    type: boolean
+    description: >-
+      WARNING: This will push all scraped files to IPFS and Filecoin.  
+      There is no way to remove files from these storage systems.
 required:
  - item_name
 documents:
