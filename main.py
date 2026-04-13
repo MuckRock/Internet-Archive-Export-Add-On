@@ -21,6 +21,7 @@ class Archive(AddOn):
         The subprocess.call() runs the Internat Archive configuration command. 
         See https://archive.org/services/docs/api/internetarchive/quickstart.html
         """
+        self.client.session.headers.update({'User-Agent': 'IA Export Add-On'})
         if not self.documents:
             self.set_message("Please select at least one document")
             return
