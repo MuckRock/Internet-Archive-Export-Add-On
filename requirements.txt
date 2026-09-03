@@ -1,3 +1,4 @@
-python-documentcloud==4.2.0
+python-documentcloud==4.8.1
 requests
 internetarchive
+python-squarelet==0.6.0
