@@ -1,13 +1,12 @@
 """ This program uses the internetarchive python library and DocumentCloud's addon system"""
 import os.path
 import shutil
-import subprocess
-
+from pathlib import Path
 from internetarchive import upload
-
 from documentcloud.addon import AddOn
 
 FILECOIN_ID = 104
+
 
 class Archive(AddOn):
     """Based on DocumentCloud HelloWorld template Add-On."""
@@ -16,10 +15,10 @@ class Archive(AddOn):
         """
         At the present time all items are uploaded to Document Cloud's Internet Archive page,
         which can be found here: https://archive.org/details/@documentcloudupload
-        If you fork the project and create your own repo secrets (IA_USER and IA_PASS),
-        The code will upload to your Internet Archive account.
-        The subprocess.call() runs the Internat Archive configuration command. 
-        See https://archive.org/services/docs/api/internetarchive/quickstart.html
+        If you fork the project and create your own repo secrets (TOKEN and KEY for your
+        IA-S3 access key and secret key), the code will upload to your Internet Archive
+        account. You can retrieve your IA-S3 keys at https://archive.org/account/s3.php.
+        See https://archive.org/developers/internetarchive/configuration.html
         """
         self.client.session.headers.update({'User-Agent': 'IA Export Add-On'})
         if not self.documents:
@@ -29,12 +28,13 @@ class Archive(AddOn):
         item_name = self.data["item_name"]
         # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
         item_name = item_name.replace(" ", "-")
-        # pulls the internet archive username & password secrets from the workflow environment.
-        ia_user = os.environ["TOKEN"]
-        ia_pass = os.environ["KEY"]
-        # cmd to set up the config file for Internet Archive API access.
-        cmd = f'ia configure --username {ia_user} --password  {ia_pass}'
-        subprocess.call(cmd, shell=True)
+        # pulls the IA-S3 access key & secret key secrets from the workflow environment.
+        ia_access = os.environ["TOKEN"]
+        ia_secret = os.environ["KEY"]
+        # write the config file for Internet Archive API access.
+        config_path = Path.home() / ".config" / "internetarchive" / "ia.ini"
+        config_path.parent.mkdir(parents=True, exist_ok=True)
+        config_path.write_text(f"[s3]\naccess = {ia_access}\nsecret = {ia_secret}\n")
         doc_ids = []
         for document in self.get_documents():
             document_id = str(document.id)
@@ -45,7 +45,6 @@ class Archive(AddOn):
                 file.write(document.pdf)
             upload(item_name, files=full_path)
             doc_ids.append(document_id)
-
         if self.data.get("filecoin") and doc_ids:
             self.client.post(
                 "addon_runs/",
@@ -55,6 +54,6 @@ class Archive(AddOn):
         shutil.rmtree("./out/", ignore_errors=False, onerror=None)
 
 
-
 if __name__ == "__main__":
     Archive().main()
+
