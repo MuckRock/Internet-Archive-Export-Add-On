@@ -12,6 +12,10 @@ properties:
  item_name: 
   title: Name of Internet Archive item
   type: string
+ to_tag:
+  title: Tag Documents that have been successfully uploaded
+  type: boolean
+  default: true
  filecoin:
     title: Push to IPFS/Filecoin
     type: boolean
