@@ -16,7 +16,7 @@ properties:
   title: Tag Documents
   type: boolean
   default: true
-  description: This will tag documents uploaded to the archive successfully with a key "ia_upload"
+  description: This will tag documents uploaded to the archive successfully with a key 'ia_url' that contains a link to the item on the Internet Archive. 
  filecoin:
     title: Push to IPFS/Filecoin
     type: boolean
