@@ -5,7 +5,7 @@ instructions: |
  If you fork this project, you can set your own repository secrets, name them IA_USER (your internet archive username) and IA_PASS (your internet archive password) which will allow you to backup your projects to your own Internet Archive account.
  This Add-On was developed using the [Internet Archive's Python Library](https://archive.org/services/docs/api/internetarchive/). 
 disclosures: |
- This Add-On uploads documents to the Internet Archive. By default, this will upload documents to DocumentCloud's Internet Archive account which is public unless you fork this Add-On.  
+ This Add-On uploads documents to the Internet Archive. By default, this will upload documents to DocumentCloud's Internet Archive account which is public unless you fork this Add-On and use your own credentials.
  Read the Internet Archive's [privacy policy](https://archive.org/about/terms) to learn more. 
 type: object
 properties:
