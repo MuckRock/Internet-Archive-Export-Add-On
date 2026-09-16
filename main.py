@@ -83,7 +83,7 @@ class Archive(AddOn):
                 upload(item_name, files=full_path)
             except Exception as exc:  # upload failed — leave untagged so it's retried
                 print(f"Upload failed for {document_id}: {exc}")
-                self.set_message(f"Upload failed for {document_id}: {exc}")
+                self.set_message(f"Upload failed for {document_id}")
                 continue
 
             # upload succeeded — tag the item location
