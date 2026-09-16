@@ -59,9 +59,6 @@ class Archive(AddOn):
             self.set_message("Please select at least one document")
             return
         os.makedirs(os.path.dirname("./out/"), exist_ok=True)
-        item_name = self.data["item_name"]
-        # Item names in the Internet archive cannot include spaces, so spaces -> dashes.
-        item_name = item_name.replace(" ", "-")
         # pulls the IA-S3 access key & secret key secrets from the workflow environment.
         ia_access = os.environ["TOKEN"]
         ia_secret = os.environ["KEY"]
@@ -70,10 +67,12 @@ class Archive(AddOn):
         config_path.parent.mkdir(parents=True, exist_ok=True)
         config_path.write_text(f"[s3]\naccess = {ia_access}\nsecret = {ia_secret}\n")
 
-        item_url = f"https://archive.org/details/{item_name}"
         doc_ids = []
         for document in self.get_documents():
             document_id = str(document.id)
+            # each document gets its own IA item, identified by the document ID
+            item_name = f"documentcloud-{document_id}"
+            item_url = f"https://archive.org/details/{item_name}"
             title = f'{document.title}-{document_id}.pdf'
             save_path = "./out"
             full_path = os.path.join(save_path, title)

@@ -9,9 +9,6 @@ disclosures: |
  Read the Internet Archive's [privacy policy](https://archive.org/about/terms) to learn more. 
 type: object
 properties:
- item_name: 
-  title: Name of Internet Archive item
-  type: string
  to_tag:
   title: Tag Documents
   type: boolean
