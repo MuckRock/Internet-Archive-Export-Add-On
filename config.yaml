@@ -13,9 +13,10 @@ properties:
   title: Name of Internet Archive item
   type: string
  to_tag:
-  title: Tag Documents that have been successfully uploaded
+  title: Tag Documents
   type: boolean
   default: true
+  description: This will tag documents uploaded to the archive successfully with a key "ia_upload"
  filecoin:
     title: Push to IPFS/Filecoin
     type: boolean
