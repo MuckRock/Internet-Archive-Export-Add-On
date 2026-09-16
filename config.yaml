@@ -20,10 +20,7 @@ properties:
     description: >-
       WARNING: This will push all scraped files to IPFS and Filecoin.  
       There is no way to remove files from these storage systems.
-required:
- - item_name
 documents:
- - query
  - selected
 categories:
  - export
