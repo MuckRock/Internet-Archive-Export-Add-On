@@ -68,8 +68,14 @@ class Archive(AddOn):
         config_path.write_text(f"[s3]\naccess = {ia_access}\nsecret = {ia_secret}\n")
 
         doc_ids = []
+        skipped = []
         for document in self.get_documents():
             document_id = str(document.id)
+            # only public documents may be uploaded to the Internet Archive
+            if document.access != "public":
+                print(f"Skipping {document_id}: access is {document.access}, not public")
+                skipped.append(document_id)
+                continue
             # each document gets its own IA item, identified by the document ID
             item_name = f"documentcloud-{document_id}"
             item_url = f"https://archive.org/details/{item_name}"
@@ -92,6 +98,9 @@ class Archive(AddOn):
             # upload succeeded — tag the item location
             self.tag_document(document, item_url)
             doc_ids.append(document_id)
+
+        if skipped:
+            self.set_message(f"Skipped {len(skipped)} non-public document(s): {', '.join(skipped)}")
 
         if self.data.get("filecoin") and doc_ids:
             self.client.post(
