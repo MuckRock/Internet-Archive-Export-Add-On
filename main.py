@@ -73,7 +73,10 @@ class Archive(AddOn):
             # each document gets its own IA item, identified by the document ID
             item_name = f"documentcloud-{document_id}"
             item_url = f"https://archive.org/details/{item_name}"
-            title = f'{document.title}-{document_id}.pdf'
+            safe_title = document.title.replace("/", "-").replace("\\", "-")
+            # keep well under the 255-byte filename limit, even with multibyte chars
+            safe_title = safe_title.encode("utf-8")[:150].decode("utf-8", errors="ignore")
+            title = f"{safe_title}-{document_id}.pdf"
             save_path = "./out"
             full_path = os.path.join(save_path, title)
             with open(full_path, "wb") as file:
